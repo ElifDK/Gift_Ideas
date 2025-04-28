@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gift_idea/screens/authenticate/error_page.dart';
+import 'package:gift_idea/screens/authenticate/loading_page.dart';
 import 'package:gift_idea/screens/wrapper.dart';
+import 'package:flutter/material.dart';
+
+// Import the firebase_core plugin
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,13 +13,28 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Wrapper(),
+    return FutureBuilder(
+      // Initialize FlutterFire
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return MaterialApp(
+              home:ErrorPage());
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return MaterialApp(
+              home:Wrapper());
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return MaterialApp(
+            home:LoadingPage());
+      },
     );
   }
 }
-
