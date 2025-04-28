@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "135071816715",
+    "project_id": "giftidea-ffd47",
+    "storage_bucket": "giftidea-ffd47.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135071816715:android:2c1fa03de2038b1da43b0e",
+        "android_client_info": {
+          "package_name": "com.elifkoc.gift_idea"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBECXNe0syM7FaLXgDfidtSuh_O1pelmIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
