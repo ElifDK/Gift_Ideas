@@ -5,8 +5,21 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Loading')
+    return Scaffold(
+      backgroundColor: Colors.amberAccent,
+      body: SafeArea(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+              Text('Loading'),
+              CircularProgressIndicator(),
+                        ],
+                      ),
+            ],
+          ))
     );
   }
 }

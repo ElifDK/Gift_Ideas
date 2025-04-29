@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gift_idea/screens/authenticate/error_page.dart';
 import 'package:gift_idea/services/auth.dart';
 
 class SignIn extends StatefulWidget {
@@ -24,7 +25,9 @@ class _SignInState extends State<SignIn> {
         child: ElevatedButton(onPressed: () async {
           dynamic result =  await _auth.signInAnon();
           if (result == null) {
-            print ('Error signing in');
+              Navigator.push( context, MaterialPageRoute(builder: (context) => ErrorPage(errorDetail: "Error Signing In")), );
+
+            //print ('Error signing in');
           }
           else {
             print ('Signed in');
