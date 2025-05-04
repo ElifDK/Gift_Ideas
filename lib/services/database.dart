@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gift_idea/model/gift.dart';
 
 class DatabaseService{
 
@@ -17,8 +18,20 @@ class DatabaseService{
 
   }
 
+  // gift list from snapshot
+List<Gift> _giftListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return Gift(
+        name: doc['name'] ?? '',
+        wishOne: doc['wishOne'] ?? '',
+        wishTwo: doc['wishTwo'] ?? '',
+        wishThree: doc['wishThree'] ?? '',
+      );
+    }).toList();
+}
   // get gifts stream
-Stream<QuerySnapshot> get gifts {
-    return giftCollection.snapshots();
+Stream<List<Gift>> get gifts {
+    return giftCollection.snapshots()
+    .map(_giftListFromSnapshot);
 }
 }

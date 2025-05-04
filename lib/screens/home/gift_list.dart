@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gift_idea/model/gift.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'gift_tile.dart';
 
 class GiftList extends StatefulWidget {
   const GiftList({super.key});
@@ -11,13 +12,17 @@ class GiftList extends StatefulWidget {
 
 class _GiftListState extends State<GiftList> {
 
-
   @override
   Widget build(BuildContext context) {
-    final gifts = Provider.of<QuerySnapshot?>(context);
-    for (var doc in gifts!.docs) {
-      print(doc.data());
-    }
-    return const Placeholder();
+    final gifts = Provider.of<List<Gift>?>(context);
+    gifts?.forEach((gift) {
+      print(gift.name);
+      print(gift.wishOne);
+    });
+    return ListView.builder(
+        itemCount: gifts?.length,
+        itemBuilder: (context, index) {
+          return GiftTile(gift: gifts!.elementAt(index));
+        });
   }
 }

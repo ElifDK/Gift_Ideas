@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gift_idea/model/gift.dart';
 import 'package:gift_idea/screens/home/gift_list.dart';
 import 'package:gift_idea/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:gift_idea/services/database.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatelessWidget {
   final String uid;
@@ -11,7 +11,8 @@ class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot?>.value(
+
+    return StreamProvider<List<Gift>?>.value(
       value: DatabaseService(uid: uid).gifts,
       initialData: null,
       child: Scaffold(
@@ -29,7 +30,8 @@ class Home extends StatelessWidget {
           ),
           onPressed: () async {
             await _auth.signOut();
-          })],
+          })
+                ],
         ),
         body: GiftList(),
       ),
