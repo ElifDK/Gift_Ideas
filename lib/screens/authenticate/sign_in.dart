@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gift_idea/screens/authenticate/error_page.dart';
+import 'package:gift_idea/screens/error_page.dart';
+import 'package:gift_idea/screens/form_methods.dart';
 import 'package:gift_idea/services/auth.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -48,21 +49,8 @@ class _SignInState extends State<SignIn> {
               padding: const EdgeInsets.all(15.0),
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  label: SizedBox(
-                    width: 100,
-                    child: Row(
-                      children: [Icon(Icons.email), Text('Email')],
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
+                decoration: buildInputDecoration(
+                    Icon(Icons.email), 'Email'),
                 validator: (value) {
                   if (value != null) {
                     if (value.isEmpty) {
@@ -89,21 +77,8 @@ class _SignInState extends State<SignIn> {
                 obscureText: true,
                 autocorrect: false,
                 enableSuggestions: false,
-                decoration: InputDecoration(
-                  fillColor: Colors.white,
-                  filled: true,
-                  label: SizedBox(
-                    width: 150,
-                    child: Row(
-                      children: [Icon(Icons.password), Text('Password')],
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
+                decoration: buildInputDecoration(
+                    Icon(Icons.password), 'Password'),
                 validator: (value) {
                   if (value != null) {
                     if (value.isEmpty) {

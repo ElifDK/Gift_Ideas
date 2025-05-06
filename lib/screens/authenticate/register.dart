@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gift_idea/screens/form_methods.dart';
 import 'package:gift_idea/services/auth.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -18,6 +19,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String error = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class _RegisterState extends State<Register> {
         appBar: AppBar(
           backgroundColor: Colors.orange,
           elevation: 0.0,
-          title: Text ('Sign Up'),
+          title: Text('Sign Up'),
           actions: [
             TextButton(
                 child: Row(
@@ -47,21 +49,8 @@ class _RegisterState extends State<Register> {
                 padding: const EdgeInsets.all(15.0),
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    label: SizedBox(
-                      width: 100,
-                      child: Row(
-                        children: [Icon(Icons.email), Text('Email')],
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
+                  decoration: buildInputDecoration(
+                      Icon(Icons.email), 'Email'),
                   validator: (value) {
                     if (value != null) {
                       if (value.isEmpty) {
@@ -71,13 +60,11 @@ class _RegisterState extends State<Register> {
                         return 'Not a valid email';
                       }
                     }
-
                   },
                   onChanged: (value) {
                     setState(() {
                       email = value ?? '';
                     });
-
                   },
                 ),
               ),
@@ -88,21 +75,8 @@ class _RegisterState extends State<Register> {
                   obscureText: true,
                   autocorrect: false,
                   enableSuggestions: false,
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    label: SizedBox(
-                      width: 150,
-                      child: Row(
-                        children: [Icon(Icons.password), Text('Password')],
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
+                  decoration: buildInputDecoration(
+                      Icon(Icons.password), 'Password'),
                   validator: (value) {
                     if (value != null) {
                       if (value.isEmpty) {
@@ -121,26 +95,28 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: () async{
-                if (_formKey.currentState!.validate()){
-                  dynamic result = await _auth.registerEmailPass(email, password);
+              ElevatedButton(onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  dynamic result = await _auth.registerEmailPass(
+                      email, password);
                   if (result == null) {
                     setState(() {
                       error = 'Something went wrong!';
                     });
                   }
                   else {
-                    print ('Success');
+                    print('Success');
                   }
                 }
               },
                   child: Text('Register')),
               SizedBox(height: 12,),
-              Text(error,style: TextStyle(color:Colors.red),)
+              Text(error, style: TextStyle(color: Colors.red),)
 
             ],
           ),
         )
     );
   }
+
 }

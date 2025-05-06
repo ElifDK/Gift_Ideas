@@ -6,7 +6,6 @@ class LoadingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amberAccent,
       body: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

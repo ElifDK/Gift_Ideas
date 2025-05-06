@@ -3,7 +3,7 @@ import 'package:gift_idea/model/gift.dart';
 
 class GiftTile extends StatelessWidget {
   final Gift gift;
-  GiftTile({required this.gift, super.key});
+  const GiftTile({required this.gift, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,7 @@ class GiftTile extends StatelessWidget {
           ),
           title: Text(gift.name),
           subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(gift.wishOne),
               Text(gift.wishTwo),

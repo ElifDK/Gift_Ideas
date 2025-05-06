@@ -15,14 +15,12 @@ class _GiftListState extends State<GiftList> {
   @override
   Widget build(BuildContext context) {
     final gifts = Provider.of<List<Gift>?>(context);
-    gifts?.forEach((gift) {
-      print(gift.name);
-      print(gift.wishOne);
-    });
     return ListView.builder(
-        itemCount: gifts?.length,
+        itemCount: gifts?.length ?? 0,
         itemBuilder: (context, index) {
-          return GiftTile(gift: gifts!.elementAt(index));
-        });
+          if (gifts != null) {
+          return GiftTile(gift: gifts.elementAt(index));
+        }
+        return null;});
   }
 }
